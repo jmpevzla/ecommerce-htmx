@@ -8,13 +8,15 @@
     </div>
 
     <div class="information w-full lg:w-2/5 lg:p-6">
-        <h1 class="text-2xl">Product Name</h1>
+        <h1 class="text-2xl">{{ product.name }}</h1>
 
-        <p class="mt-1 text-gray-400">$9.99</p>
+        <p class="mt-1 text-gray-400">{{ product.get_display_price }}</p>
 
+        {% if product.description %}
         <p class="mt-6 text-gray-700">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, laborum at? Corrupti hic repellendus eum optio est aliquid at, repudiandae similique rerum, ut dolorum minus corporis necessitatibus. Molestiae, laboriosam iste?
+            {{ product.description }}
         </p>
+        {% endif %}
 
         <a href="#" class="mt-6 inline-block px-8 py-4 rounded-xl bg-purple-500 hover:bg-purple-700 text-white">
             Add to cart

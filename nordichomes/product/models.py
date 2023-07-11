@@ -1,4 +1,6 @@
 from django.db import models
+import locale
+locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -23,3 +25,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_display_price(self):
+        return locale.currency(self.price, grouping=True)
+    
