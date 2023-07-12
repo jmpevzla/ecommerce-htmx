@@ -18,7 +18,12 @@
         </p>
         {% endif %}
 
-        <a href="#" class="mt-6 inline-block px-8 py-4 rounded-xl bg-purple-500 hover:bg-purple-700 text-white">
+        <a href="#" 
+            class="mt-6 inline-block px-8 py-4 rounded-xl bg-purple-500 hover:bg-purple-700 text-white"
+            hx-get="{% url 'add_to_cart' product.id %}"
+            hx-target="#menu-cart-button"
+            hx-swap="outerHTML"
+            >
             Add to cart
         </a>
     </div>
