@@ -1,9 +1,13 @@
 {% extends 'core/base.html' %}
 
+{% block title %}{{ product.name }}{% endblock %}
+
 {% block content %}
 <div class="max-w-7xl mx-auto flex flex-wrap py-6 px-6 xl:px-0">
     <div class="images w-full mb-6 lg:mb-0 lg:w-3/5">
-        <img src="{{ product.image.url }}" alt="product image" 
+        <img 
+            src="{% if product.image %}{{ product.image.url }}{% else %}https://via.placeholder.com/240x240.jpg{% endif %}"
+            alt="{{ product.name }} image" 
             class="rounded-xl">
     </div>
 

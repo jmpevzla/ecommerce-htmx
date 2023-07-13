@@ -1,5 +1,7 @@
 {% extends 'core/base.html' %}
 
+{% block title %}Welcome{% endblock %}
+
 {% block content %}
 <header class="px-6 py-10 lg:py-20 bg-purple-500">
     <div class="max-w-3xl mx-auto text-center">
@@ -16,7 +18,7 @@
 </header>
 
 <div class="max-w-7xl mx-auto py-2 px-6 xl:px-0">
-    <div class="products flex items-center justify-center flex-wrap">'
+    <div class="products flex items-center justify-center flex-wrap">
         {% for product in products %}
             {% include 'product/partials/product_list_item.html' %}
         {% endfor %}
