@@ -9,7 +9,8 @@
 
         <form method="post" action="." class="space-y-3">
             {% csrf_token %}
-
+            <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+            
             <div>
                 <label for="username">Username</label>
                 <input id="username" type="text"
