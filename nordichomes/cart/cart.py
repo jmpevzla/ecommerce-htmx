@@ -39,13 +39,13 @@ class Cart(object):
             self.cart[product_id]['quantity'] += int(quantity)
         
             if self.cart[product_id]['quantity'] == 0:
-                self.remove(product_id)
+                return self.remove(product_id)
             
         self.save()
 
     def remove(self, product_id):
-        if product_id in self.cart:
-            del self.cart[product_id]
+        if str(product_id) in self.cart:
+            del self.cart[str(product_id)]
             self.save()
 
     def get_total_cost(self):
@@ -53,3 +53,9 @@ class Cart(object):
 
     def get_display_total_cost(self):
         return f'$ {self.get_total_cost()}'
+    
+    def get_item(self, product_id):
+        if str(product_id) in self.cart:
+            return self.cart[str(product_id)]
+        else:
+            return None
