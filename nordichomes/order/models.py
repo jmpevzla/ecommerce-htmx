@@ -9,7 +9,7 @@ class Order(models.Model):
 
     STATUS_CHOICES = (
         (ORDERED, 'Ordered'),
-        (ORDERED, 'Shipped'),
+        (SHIPPED, 'Shipped'),
     )
 
     user = models.ForeignKey(User, related_name='orders', blank=True, null=True, on_delete=models.CASCADE)
