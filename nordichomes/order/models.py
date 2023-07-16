@@ -28,9 +28,15 @@ class Order(models.Model):
 
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=ORDERED)
 
-    def get_total(self):
-        return sum(item.price * item.quantity for item in self.items.all())
+    class Meta:
+        ordering = ('-created_at',)
 
+    def get_total(self):
+        if self.paid_amount:
+            return self.paid_amount
+        #return sum(item.get_total_price() for item in self.items.all())
+        return 0
+    
     def get_display_total(self):
         return f'$ {self.get_total()}'
 
@@ -40,5 +46,5 @@ class OrderItem(models.Model):
     price = models.DecimalField(max_digits=12, decimal_places=2)
     quantity = models.IntegerField(default=1)
 
-    def get_display_price(self):
+    def get_total_price(self):
         return f'$ {self.price}'
