@@ -28,14 +28,14 @@ def start_order(request):
             },
             'quantity': item['quantity']
         })
-
+ 
     stripe.api_key = settings.STRIPE_API_KEY_HIDDEN
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         line_items = items,
         mode='payment',
-        success_url='http://127.0.0.1:8000/cart/success/',
-        cancel_url='http://127.0.0.1:8000/cart/'
+        success_url=request.build_absolute_uri('/cart/success/'),
+        cancel_url=request.build_absolute_uri('/cart/'),
     )
     payment_intent = session.payment_intent
 
@@ -48,10 +48,11 @@ def start_order(request):
         zipcode = data['zipcode'],
         place = data['place'],
         phone = data['phone'],
-        payment_intent = payment_intent,
         paid = True,
         paid_amount = total_price
     )
+    
+    #order.payment_intent = payment_intent (None)
     order.save()
 
     for item in cart:
